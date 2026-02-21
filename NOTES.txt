@@ -1,0 +1,143 @@
+Create a main python file (FOR API REUESTS)
+CREATE VALIDATION CLASS 
+CREATE API REUESTS AND ROUTES
+Create database connection and cursor
+	create database interaction logic: Could be either direct sql ueries or through models()
+
+
+Create a database file ()
+
+
+
+
+
+TO LEARN
+scnchronous asynchronous
+CUDA
+What is hashing (detailed)
+
+
+CONCURRENCY 
+Threading → multiple workers
+Async → cooperative scheduling
+Multiprocessing → multiple processes
+✅ Thread vs process vs async (when to use each)
+✅ Race conditions and locks
+✅ Deadlocks (very important concept)
+✅ How OS schedules threads
+✅ Why Java uses thread pools
+✅ Python threading vs multiprocessing performance
+✅ Real architecture of web servers (Gunicorn workers)
+✅ How high-scale systems handle millions of requests
+
+
+HOW to make JWT tokens outside API 
+DONE VV
+QUESTION FOR SELF 
+    create a mini python project
+    create endpoint post
+    create endpoint login 
+    create authentication uding JWT  
+
+
+CREATE A RDBMS of my own (PROJECT)
+
+Practice SQL Queries with joins
+
+--------------------------------------------------------------------------------------------------------------
+
+
+ 
+post = db.query(models.Post).filter(models.Post.id == id).first()
+    print(post)
+
+THIS line is very important it performs SQL operation on the database and retrieves it back to the API logic . 
+
+
+
+Authentication 
+
+SESSION BASED AUTHENTICATION :- we store something on backend to track of our user login or logout 
+
+JWT Token base authentication(STATELESS):- Token is stored on frontend. 
+
+
+
+Threads Vs Async
+
+Thread = extra worker
+Async = one worker juggling tasks
+
+
+
+JWT AUTHENTICATION STEPS :-
+
+(EXPLAIN IT TO MATCHA ON COPY )
+
+NO SESSIONS ARE CREATED IT IS STATELESS
+TOKEN NOT ENCRYPTED 
+HEADER : PAYLOAD : SIGNATURE 
+
+HOW A TOKEN IS CRETED
+HEADER : {“alg”: “HS256”,”typ” : “JWT” }
+               +      
+PAYLOAD : Can contain Info about the user But is accessible from the outside.
+{“sub” : “12344555” , ”name” : “ahmad”} 
+               +
+SIGNATURE : Combination of (HEADER ,PAYLOAD ,SECRET) --------> Signing ALGO(HS256)
+            Signature can only be created by API server
+             
+
+
+LOGGING using JWT Authentication
+
+             request
+CLIENT -------------------> /login (username + password) --------> API
+---------------> API Fetches password from DB using email  -----------------> 
+password fetched from DB is hashed , so the password from login request is hashed---------->
+-------------> IF hased password match------------> JWT Token is Created ------------> 
+Now client can use that token (Sent in new request header )  to access resorces allowed to that user.
+
+
+
+HOW AUTHORIZATION WILL BE HANDLED USING JWT Token
+    AUTHENTICATION is handled by token creating and verification 
+    but AUTHORIZTAION WILL HAPPEN IN THIS WAY VVV
+
+
+posts database will now store posts with owner id (IT DOSENT TRACK)
+
+T create post it will now ask for owner id:
+        owner id will come from JWT token payload 
+            so if another user has logged in it will have a different token with its id embedded into it 
+                    now that id will be used to create posts under that id 
+                        This way we will track posts by id 
+
+GET requests will also change according to id
+    db query will ask in post table using owner_id which 
+        will come from token payload embedding
+
+
+
+ENVIRONMENT VASRIABLES DONE .env file created
+
+
+VOTING LIKE LOGIC
+
+User should be able to like a post
+    token has id: each id shoul dbe able to 
+
+    who should votes be visible to 
+        get all each post -- total votes 
+
+        userid----postid (Composite key to maintain 1 like per user)
+
+        user --- login ---- vote endpoint ---- knows current user by token ----
+                                 ^
+                                 ^
+                                 ^
+                           gets user id from token (to make sure like comes from current user )
+                           post id we give in vote body
+                    db uery inside vote endpoint (db.) 
+
+
