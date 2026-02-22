@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings,Field
 
 # CONFIGURE ENVIRONMENT VARIABLES
 class Settings(BaseSettings):
@@ -10,7 +10,7 @@ class Settings(BaseSettings):
 
     secret_key: str
     algorithm: str
-    access_token_expire_minutes: int
+    access_token_expire_minutes: int = Field(30, alias="ACCESS_TOKEN_EXPIRE_MINUTES")
 
     alembic_password:str
 
