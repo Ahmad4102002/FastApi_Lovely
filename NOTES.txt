@@ -15,6 +15,9 @@ TO LEARN
 scnchronous asynchronous
 CUDA
 What is hashing (detailed)
+WHat are ports
+LEARN MVC
+Learn React
 
 
 CONCURRENCY 
@@ -31,18 +34,14 @@ Multiprocessing → multiple processes
 ✅ How high-scale systems handle millions of requests
 
 
-HOW to make JWT tokens outside API 
-DONE VV
-QUESTION FOR SELF 
-    create a mini python project
-    create endpoint post
-    create endpoint login 
-    create authentication uding JWT  
-
-
 CREATE A RDBMS of my own (PROJECT)
 
 Practice SQL Queries with joins
+
+Learn JavaScript
+learn basic linux
+What is SSL Learn
+
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -141,3 +140,15 @@ User should be able to like a post
                     db uery inside vote endpoint (db.) 
 
 
+when i have to change the code 
+git -add
+git commit 
+
+push to origin main 
+push to heroku main ----> automatically deploys 
+
+if i want to make changes to database
+    cretae the revision file in developement env
+        push the alembic revision to heroku main
+            then run slembic command on heroku cli 
+                heroku run "alembic upgrade head"
